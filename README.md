@@ -8,7 +8,7 @@ SSMGR_PASSWORD：受控端管理密码
 
 7000: webUI端口
 
-` docker -d -v path/to/ssmgr-config-dir:/root/.ssmgr/ -p 7000:7000 -e SSMGR_PASSWORD=123456 miniers/ssmgr:latest `
+` docker -d -v path/to/ssmgr-config-dir:/root/.ssmgr/ -p 7000:7000 -e SSMGR_PASSWORD=123456 miniers/docker-ssmgr `
 
 ##### 受控端
 
@@ -21,7 +21,7 @@ SSMGR_PASSWORD：管理密码
 38000-38100:shadowsock 映射端口，可自行更改
 
 
-` docker run -d -v path/to/ssmgr-config-dir:/root/.ssmgr -p 4001:4001 -p 38000-38100:38000-38100 -e SSMGR_PASSWORD=123456 miniers/ssmgr `
+` docker run -d -v path/to/ssmgr-config-dir:/root/.ssmgr -p 4001:4001 -p 38000-38100:38000-38100 -e SSMGR_PASSWORD=123456 miniers/docker-ssmgr `
 
 
 ##### webgui.yml 模板
@@ -31,7 +31,7 @@ type: m
 empty: false
 
 manager:
-  address: 1.1.1.1:4001
+  address: 127.0.0.1:4001
   password: '123456'
   # 这部分的端口和密码需要跟上一步 manager 参数里的保持一致，以连接 type s 部分监听的 tcp 端口
 plugins:
