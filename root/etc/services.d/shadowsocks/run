@@ -1,0 +1,6 @@
+#!/usr/bin/with-contenv sh
+
+SS_MODULE=${SS_MODULE:-"ss-manager"}
+SS_ARGS=${SS_ARGS:-"-m chacha20-ietf-poly1305 -u --manager-address 127.0.0.1:4000 -t 300 --plugin obfs-server --plugin-opts \"obfs=http;failover=www.bing.com\""}
+
+exec $SS_MODULE $SS_ARGS

@@ -1,0 +1,14 @@
+#!/usr/bin/with-contenv sh
+
+SSMGR_PASSWORD=${SSMGR_PASSWORD:-"123456"}
+
+cat > /root/ss.yml <<-EOF
+type: s
+empty: false
+shadowsocks:
+  address: 127.0.0.1:4000
+manager:
+  address: 0.0.0.0:4001
+  password: '${SSMGR_PASSWORD}'
+db: 'ss.sqlite'
+EOF

@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv sh
+
+cd /ssmgr
+git pull
+npm i --only=prod --registry=https://registry.npm.taobao.org 
