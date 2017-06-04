@@ -4,19 +4,23 @@
 
 需要预先准备好 webgui.yml 文件放置在 /data/docker/ssmgr 目录中
 
-SSMGR_PASSWORD：受控端管理密码
+SSMGR_PASSWORD：受控端管理密码,默认123456
+
+SS_METHOD：manager-ss 加密方式，默认为 chacha20-ietf-ploy1305
 
 -p 7000:80 webgui外部访问端口,容器内端口（webgui.yml 中配置）
 
--p 38000-38100:38000-38100 ss 映射端口，
+38000-38100:shadowsock 端口，如果管理端同时需要提供 SS 服务则可以配置该端口映射
 
-` docker run -d -v /data/docker/ssmgr:/root/.ssmgr/ -p 7000:80 -p 38000-38100:38000:38100 -e SSMGR_PASSWORD=123456 miniers/docker-ssmgr `
+` docker run -d -v  /data/docker/ssmgr:/root/.ssmgr/ -p 7000:80 -p 38000-38100:38000-38100 -e SSMGR_PASSWORD=123456 miniers/docker-ssmgr `
 
 ##### 受控端
 
 不需要准备任何文件
 
 SSMGR_PASSWORD：管理密码
+
+SS_METHOD：manager-ss 加密方式，默认为 chacha20-ietf-ploy1305
 
 4001：管理端接入端口
 

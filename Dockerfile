@@ -3,7 +3,6 @@ FROM mhart/alpine-node
 MAINTAINER miniers <m@minier.cc>
 
 ENV S6_OVERLAY_VERSION v1.19.1.1 
-ENV NODE_VERSION v7.10.0
 ENV SS_VER 3.0.6 
 ENV SS_URL https://github.com/shadowsocks/shadowsocks-libev/archive/v$SS_VER.tar.gz
 ENV SS_DIR shadowsocks-libev-$SS_VER
@@ -76,6 +75,6 @@ RUN apk add --no-cache git \
 
 ADD root /
 
-EXPOSE 4001 7000 38000-38100
+EXPOSE 4001 80 38000-38100
 
 ENTRYPOINT ["/init"]
