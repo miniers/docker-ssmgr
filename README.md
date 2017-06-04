@@ -2,13 +2,15 @@
 
 ##### 管理端
 
-需要预先准备好 webgui.yml 文件放置在 path/to/ssmgr-config-dir 目录中
+需要预先准备好 webgui.yml 文件放置在 /data/docker/ssmgr 目录中
 
 SSMGR_PASSWORD：受控端管理密码
 
-7000: webUI端口
+-p 7000:80 webgui外部访问端口,容器内端口（webgui.yml 中配置）
 
-` docker -d -v path/to/ssmgr-config-dir:/root/.ssmgr/ -p 7000:7000 -e SSMGR_PASSWORD=123456 miniers/docker-ssmgr `
+-p 38000-38100:38000-38100 ss 映射端口，
+
+` docker run -d -v /data/docker/ssmgr:/root/.ssmgr/ -p 7000:80 -p 38000-38100:38000:38100 -e SSMGR_PASSWORD=123456 miniers/docker-ssmgr `
 
 ##### 受控端
 
@@ -21,7 +23,7 @@ SSMGR_PASSWORD：管理密码
 38000-38100:shadowsock 映射端口，可自行更改
 
 
-` docker run -d -v path/to/ssmgr-config-dir:/root/.ssmgr -p 4001:4001 -p 38000-38100:38000-38100 -e SSMGR_PASSWORD=123456 miniers/docker-ssmgr `
+` docker run -d -v /data/docker/ssmgr:/root/.ssmgr -p 4001:4001 -p 38000-38100:38000-38100 -e SSMGR_PASSWORD=123456 miniers/docker-ssmgr `
 
 
 ##### webgui.yml 模板
