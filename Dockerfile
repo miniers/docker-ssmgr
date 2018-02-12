@@ -1,9 +1,9 @@
-FROM mhart/alpine-node
+FROM mhart/alpine-node:latest
 
-MAINTAINER miniers <m@minier.cc>
+MAINTAINER miniers <m@lk.mk>
 
-ENV S6_OVERLAY_VERSION v1.19.1.1 
-ENV SS_VER 3.0.6 
+ENV S6_OVERLAY_VERSION v1.21.2.2 
+ENV SS_VER 3.1.3
 ENV SS_URL https://github.com/shadowsocks/shadowsocks-libev/archive/v$SS_VER.tar.gz
 ENV SS_DIR shadowsocks-libev-$SS_VER
 
@@ -20,8 +20,8 @@ RUN set -ex \
                           libev \
                           libsodium \
                           mbedtls \
+                          c-ares \
                           pcre \
-                          udns \
     && apk add --no-cache --virtual .build-deps \
         autoconf \
         automake \
@@ -32,6 +32,7 @@ RUN set -ex \
         curl \
         libev-dev \
         unzip \
+        c-ares-dev \
         libtool \
         linux-headers \
         openssl-dev \
@@ -39,7 +40,6 @@ RUN set -ex \
         mbedtls-dev \
         pcre-dev \
         tar \
-        udns-dev \
         wget \
         git \
     && curl -ksSL $SS_URL | tar xz \
@@ -67,11 +67,11 @@ RUN set -ex \
         simple-obfs-$SIMPLE_OBFS_VERSION \
         /var/cache/apk/*
 
-RUN apk add --no-cache git \
+RUN apk add --no-cache  git \ 
     && git clone https://github.com/miniers/shadowsocks-manager.git /ssmgr \
     && cd /ssmgr \
-    && git checkout manager-user \
-    && npm i --only=prod --registry=https://registry.npm.taobao.org 
+    && git checkout miniers \
+    && npm i
 
 ADD root /
 
