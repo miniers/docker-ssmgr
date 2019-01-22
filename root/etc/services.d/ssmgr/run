@@ -1,3 +1,13 @@
 #!/usr/bin/with-contenv sh
+
+SSMGR_TYPE=${SSMGR_TYPE:-"client"}
+
+ssPath="/root/.ssmgr/ss.yml"
+webguiPath="/root/.ssmgr/webgui.yml"
+
 cd /ssmgr
-exec node server.js -c /root/ss.yml
+if [ $SSMGR_TYPE == "client" ];then
+        exec node server.js -c $ssPath
+else
+        exec node server.js -c $webguiPath
+fi

@@ -1,7 +1,11 @@
 #!/usr/bin/with-contenv sh
 
+SSMGR_TYPE=${SSMGR_TYPE:-"client"}
+
 SS_MODULE=${SS_MODULE:-"ss-manager"}
 SS_METHOD=${SS_METHOD:-"chacha20-ietf-poly1305"}
 SS_ARGS=${SS_ARGS:-"-m $SS_METHOD -u --manager-address 127.0.0.1:4000 -t 300 --plugin obfs-server --plugin-opts \"obfs=tls;failover=www.bing.com\""}
 
-exec $SS_MODULE $SS_ARGS
+if [ $SSMGR_TYPE == "client" ];then
+    exec $SS_MODULE $SS_ARGS
+fi

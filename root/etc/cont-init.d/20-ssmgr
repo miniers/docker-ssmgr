@@ -2,5 +2,5 @@
 
 cd /ssmgr
 git fetch --all
-git reset --hard origin/miniers
-npm i 
+git reset --hard origin/master
+yarn

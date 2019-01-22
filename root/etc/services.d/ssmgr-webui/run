@@ -1,6 +1,0 @@
-#!/usr/bin/with-contenv sh
-
-if [ -s /root/.ssmgr/webgui.yml ]; then
-    cd /ssmgr
-    exec node server.js -c /root/.ssmgr/webgui.yml
-fi
